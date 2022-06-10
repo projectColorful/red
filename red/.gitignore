@@ -1,0 +1,17 @@
+!.gitignore
+node_modules
+efs-utils
+efs_storage
+!/key
+key/*
+!/temp
+temp/*
+!/storage
+storage/*
+.env
+.env.*
+!.env.example
+/*.sh
+*.p8
+!src/storage
+src/storage/*
