@@ -49,11 +49,7 @@ passport.use('user.local', new LocalStrategy(
         return done(null, { error: true, state: -3, msg: 'Disabled user' }, {});
       }
 
-      const sql2 = $`SELECT bl_type FROM belong WHERE user_no = ${user.user_no};`
-      const query2 = (await pool.query(sql2)).rows
-      const user_type = query2[0].bl_type
-
-      // JWT 토큰 생성
+       // JWT 토큰 생성
       const token = jwt.sign({ user_no: user.user_no }, config.auth.jwtSecretUser, {
         expiresIn: config.auth.jwtExpireUser, // https://github.com/zeit/ms
       });
