@@ -16,28 +16,24 @@ const join = async (req, res) => {
         ...req.user,
     }
     try {
-        let data = {
-            id: params.id,
-            pw: params.pw,
-            name: params.name
-        }
-        if (jkh.isEmpty(data.id,data.pw,data.name)) {
-            response.state = 2;
-            response.msg = 'params is empty !!';
-            return res.state(404).json(response);
-        }
+        // let data = {
+        //     id: params.id,
+        //     pw: params.pw,
+        //     name: params.name
+        // }
+        // if (jkh.isEmpty(data.id,data.pw,data.name)) {
+        //     response.state = 2;
+        //     response.msg = 'params is empty !!';
+        //     return res.state(404).json(response);
+        // }
         const sql0 = Q`
-        SELECT uses_id FROM users WHERE email = ${data.id};`;
+        SELECT uses_name FROM users WHERE user_no = ${params.user_no};`;
         const query0 = await pool.query(sql0);
         if (jkh.isEmpty(query0.rows)) {
             response.state = 0;
             response.msg = 'Duplicate values';
             return res.status(500).json(response);
         }//리턴하면 else가 필용없다.
-
-        const sql1 =
-            Q`INSERT INTO users(user_id,user_pw,user_name) values (${data.id},${jkh.cipher(data.pw)},${data.name});`;//등록
-        const query1 = await pool.query(sql1);//값 저장
 
         if (jkh.isEmpty(query1.rows)) {
             response.state = 3;
