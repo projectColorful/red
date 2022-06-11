@@ -32,10 +32,11 @@ const insert = async (req, res) => {
         const query0 = await pool.query(sql0);
         const note_data = {
             "note_index": query0.rows[0].note_count == null ? 1 : query0.rows[0].note_count,
-            "note_text": {
+            "note_text": [{
                 "deadline": params.deadline,
-                "content": params.content
-            }
+                "content": params.content,
+                
+            }]
         }
         const sql1 =
             Q`INSERT INTO note(user_id,note_data) values (${params.user_no},${note_data});`;//등록
