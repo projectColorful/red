@@ -30,12 +30,13 @@ const insert = async (req, res) => {
         WHERE
             TU.user_no = ${params.user_no}`;
         const query0 = await pool.query(sql0);
+        const note_count = query0.rows[0].note_count;
         const note_data = {
-            "note_index": query0.rows[0].note_count == null ? 1 : query0.rows[0].note_count,
+            "note_index": note_count === null ? 1 : note_count,
             "note_text": [{
                 "deadline": params.deadline,
                 "content": params.content,
-                
+                "note_checked":params.nc
             }]
         }
         const sql1 =
@@ -45,7 +46,6 @@ const insert = async (req, res) => {
         if (jkh.isEmpty(query1.rows)) {
             response.state = 3;
             response.msg = 'sql failed';
-            jkh.webhook('err', response.msg)//log 보내는 역활
             return res.state(422).send(json(response));
         }
         else {
@@ -59,7 +59,6 @@ const insert = async (req, res) => {
         console.log(err);
         response.state = 0;
         response.msg = err + ' ';
-        //return res.status(500).json(response); //클라이언트에게 완료 메시지 보내줌
     }
     return res.state(200).join(response);//데이터 전송 !!
 

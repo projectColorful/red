@@ -1,8 +1,8 @@
 const passport = require(`../passport`);
 
 /**
- * @description /list -> 통계 목록 출력
- * @description /total -> 통계 종합정보 출력
+ * @description /list -> 목록 출력
+ * @description /modify -> 통계 종합정보 출력
  * @description /detail -> 통계 세부정보 출력
  */
 module.exports = (app) => {
