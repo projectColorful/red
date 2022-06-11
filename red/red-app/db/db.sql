@@ -19,9 +19,11 @@ CREATE TABLE public.note (
 	state int4 NOT NULL DEFAULT 1,
 	reg_dt timestamp NOT NULL DEFAULT now(),
 	user_no serial4 NOT NULL,
+    end_dt timestamp NOT NULL DEFAULT now(),
 	CONSTRAINT note_pkey PRIMARY KEY (note_no),
 	CONSTRAINT users_user_no_fkey FOREIGN KEY (user_no) REFERENCES public.users(user_no) ON DELETE CASCADE ON UPDATE CASCADE
 );
 COMMENT ON COLUMN public.note.state IS '0 삭제 1 정상';
 COMMENT ON COLUMN public.note.reg_dt IS '생성시간';
+COMMENT ON COLUMN public.note.end_dt IS '최종수정시간';
 COMMENT ON COLUMN public.note.note_data IS '{"note_text": [{"content": null, "deadline": null,"note_checked":null}], "note_index": null}';
