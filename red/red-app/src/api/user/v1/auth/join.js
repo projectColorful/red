@@ -1,5 +1,5 @@
 // const app = express.Router();
-const jkh = require("../function/jkh_function")
+const jkh = require("../../../../../lib/jkh_function")
 const { Q, pool } = require('../../../db/psqldb');
 
 
@@ -36,7 +36,7 @@ const join = async (req, res) => {
         }//리턴하면 else가 필용없다.
 
         const sql1 =
-            Q`INSERT INTO users(username,email,pw) values (${data.name},${data.id},${jkh.cipher(data.pw)});`;//등록
+            Q`INSERT INTO users(user_id,user_pw,user_name) values (${data.id},${jkh.cipher(data.pw)},${data.name});`;//등록
         const query1 = await pool.query(sql1);//값 저장
 
         if (jkh.isEmpty(query1.rows)) {

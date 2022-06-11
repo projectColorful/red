@@ -1,14 +1,14 @@
 const passport = require(`../passport`);
 
 /**
- * @description /join -> 통계 목록 출력
- * @description /login -> 통계 종합정보 출력
- * @description /pwChage -> 통계 세부정보 출력
+ * @description /join -> 회원가입
+ * @description /login -> 로그인
+ * @description /pwChage -> 비밀번호 변경
  */
 module.exports = (app) => {
-    	app.put('/login', require('./login'));
-	app.group([passport.authenticate('user.jwt', { session: false })], (router) => {
-		router.get('/join ', require('./join'));
-		router.get('/pwChage', require('./pwChage'));
-	});
+    app.post('/login', require('./login'));
+    app.group([passport.authenticate('user.jwt', { session: false })], (router) => {
+        router.post('/join ', require('./join'));
+        router.post('/pwChage', require('./pwChage'));
+    });
 };
