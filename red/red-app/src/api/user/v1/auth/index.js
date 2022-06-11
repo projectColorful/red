@@ -10,6 +10,6 @@ module.exports = (app) => {
     app.group([passport.authenticate('user.jwt', { session: false })], (router) => {
         router.post('/join ', require('./join'));
         router.post('/pwChage', require('./pwChage'));
-        router.get('/getname', require('./pwChage'));
+        router.get('/getname', require('./getName'));
     });
 };
