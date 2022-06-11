@@ -28,36 +28,21 @@ const list = async (req, res) => {
         }
         const sql0 = Q`
         select 
-            u.uses_id 
+            TN.note_no,
+            TN.note_data,
+            TN.state,
+            TN.reg_dt        
         from 
-            user u 
+            users AS TU
+            LEFT JOIN note AS TN ON TU.user_no = TN.user_no
         where 
-            u.email = ${data.id}`;//중복조회
+            TU.user_no = ${params.user_no}`;//중복조회
         const query0 = await pool.query(sql0);
-        if (jkh.isEmpty(query0.rows)) {
-            response.state = 0;
-            response.msg = 'Duplicate values';
-            return res.status(500).json(response);
-        }//리턴하면 else가 필용없다.
-
-        const sql1 =
-            Q`insert 
-            into user(username,email,pw) 
-            values (${data.name},${data.id},${jkh.cipher(data.pw)})
-        `;//등록
-        const query1 = await pool.query(sql1);//값 저장
-        const sql2 =
-            Q`insert 
-            into 
-                users_level(user_id,level_u) 
-            values((select u.user_id from users u where u.email = ${data.id}),0);
-        `
-        const query2 = await pool.query(sql2);
         if (jkh.isEmpty(query1.rows)) {
             response.state = 3;
-            response.msg = 'login failed';
+            response.msg = 'sql failed';
             jkh.webhook('err', response.msg)//log 보내는 역활
-            return res.state(404).send(json(response));
+            return res.state(422).send(json(response));
         }
         else {
             response.state = 1;

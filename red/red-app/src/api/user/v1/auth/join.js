@@ -21,7 +21,7 @@ const join = async (req, res) => {
             pw: params.pw,
             name: params.name
         }
-        if (jkh.isEmpty()) {
+        if (jkh.isEmpty(data.id,data.pw,data.name)) {
             response.state = 2;
             response.msg = 'params is empty !!';
             return res.state(404).json(response);

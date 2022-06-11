@@ -13,14 +13,15 @@ CONSTRAINT users_pkey PRIMARY KEY (user_no)
 COMMENT ON COLUMN public.users.state IS '0 탈퇴 1 정상 2 계정잠금';
 
 --메모
-create table note(
-note_no serial not null,
-note_data jsonb null DEFAULT '{"note_index": null, "note_text":{ "deadline":null,"content":null }}'::jsonb,
-state integer not null DEFAULT 1, 
-reg_dt timestamp not null DEFAULT now(),
-user_no serial ,
-CONSTRAINT note_pkey PRIMARY KEY (note_no),
-CONSTRAINT users_user_no_fkey FOREIGN KEY (user_no) references public.users(user_no) ON DELETE CASCADE ON UPDATE CASCADE
+CREATE TABLE public.note (
+	note_no serial4 NOT NULL,
+	note_data jsonb NULL DEFAULT '{"note_text": {"content": null, "deadline": null}, "note_index": null,"note_checked":null}'::jsonb,
+	state int4 NOT NULL DEFAULT 1,
+	reg_dt timestamp NOT NULL DEFAULT now(),
+	user_no serial4 NOT NULL,
+	CONSTRAINT note_pkey PRIMARY KEY (note_no),
+	CONSTRAINT users_user_no_fkey FOREIGN KEY (user_no) REFERENCES public.users(user_no) ON DELETE CASCADE ON UPDATE CASCADE
 );
 COMMENT ON COLUMN public.note.state IS '0 삭제 1 정상';
 COMMENT ON COLUMN public.note.reg_dt IS '생성시간';
+COMMENT ON COLUMN public.note.note_data IS '{"note_index": null, "note_text":{ "deadline":null,"content":null }}';
