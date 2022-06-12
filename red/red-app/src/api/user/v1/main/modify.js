@@ -33,9 +33,9 @@ const modify = async (req, res) => {
         UPDATE
             note
         SET
-        note_data = ${note_data},`
+        note_data = ${note_data}`
         if(params.state !== null){ // 삭제인지 아닌지 확인
-         sql0.append(`state = ${params.state}`);}
+         sql0.append(`, state = ${params.state}`);}
         sql0.append(    
         `WHERE
             note_no = ${params.note_no}
