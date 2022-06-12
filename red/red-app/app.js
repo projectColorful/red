@@ -3,14 +3,14 @@ const path = require('path');
 const morgan = require("morgan");
 const passport = require('passport');
 const cors = require('cors');
-const compression = require('compression');
+//const compression = require('compression');
 const jkh_f = require('./lib/jkh_function');
  require('./lib/express_group');
 
 
 const app = express();
 
-app.use(compression())
+//app.use(compression())
 app.disable('x-powered-by'); // x-powered-by 헤더 비활성화
 app.use(cors({
 	exposedHeaders: ['Content-Disposition'], // 다운로드 시 파일명 첨부 허용
