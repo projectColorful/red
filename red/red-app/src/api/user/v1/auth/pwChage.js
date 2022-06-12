@@ -3,7 +3,7 @@ const jkh = require("../../../../../lib/jkh_function")
 const { Q, pool } = require('../../../db/psqldb');
 
 
-const join = async (req, res) => {
+const pwChage = async (req, res) => {
     const response = {
         state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
@@ -53,4 +53,4 @@ const join = async (req, res) => {
 
 }// 회원가입
 
-module.exports = join;
+module.exports = pwChage;

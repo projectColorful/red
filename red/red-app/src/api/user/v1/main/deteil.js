@@ -21,7 +21,7 @@ const deteil = async (req, res) => {
             pw: params.pw,
             name: params.name
         }
-        if (jkh.isEmpty()) {
+        if (jkh.isEmpty(params.note_no)) {
             response.state = 2;
             response.msg = 'params is empty !!';
             return res.state(404).json(response);
@@ -60,4 +60,4 @@ const deteil = async (req, res) => {
 
 }// 회원가입
 
-module.exports = list;
+module.exports = deteil;
