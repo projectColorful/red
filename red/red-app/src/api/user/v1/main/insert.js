@@ -16,7 +16,7 @@ const insert = async (req, res) => {
         ...req.user,
     }
     try {
-        if (jkh.isEmpty()) {
+        if (jkh.isEmpty(params.deadline,params.content,params.nc)) {
             response.state = 2;
             response.msg = 'params is empty !!';
             return res.state(422).json(response);
