@@ -1,4 +1,4 @@
-const jkh_key = require('./jkh_config');
+const jkh_key = require('./config');
 /********************************
  * ************기본함수 **********
  *********************************/
@@ -86,7 +86,7 @@ var dcipheriv = (password) => {
 /********************************
  * ***********로그 관리***********
 *********************************/
-var webhook = require("./jkh_webhook");
+// var webhook = require("./jkh_webhook");
 
 var fs = require('fs');
 var rfs = require('rotating-file-stream');//로그 하루단위로 절샥
@@ -105,26 +105,26 @@ const token = jwt.sign({user_id: user_id}, jkh_key.app.key, {expiresIn: '1h'});
 /********************************
  * ***********ip 차단 ***********
 *********************************/
-var geoip = require('geoip-country'); // 대상 찾기용
-//var ipfiter = require('express-ipfilter').ipfiter; //벤용
-//const { query } = require('express');
-//국가 단위로 찾아보기 
-const ip_denying = (req)=>{
-    let ip = req.ip; //->ip를 받아와서
-    let geo = geoip.lookup(ip); //-> 내부 모듈 
-    var return_data ={
-        ip:ip,
-        state:0,
-        country: geo.country
-    }
-    if(geo != null && geo.country != 'KR' && ip != '127.0.0.1'){
-        return_data.state = 1;//밴 먹은 ip state = 1
-        return return_data;
-    }
-    else{
-        return return_data;
-    }
-}
+// var geoip = require('geoip-country'); // 대상 찾기용
+// //var ipfiter = require('express-ipfilter').ipfiter; //벤용
+// //const { query } = require('express');
+// //국가 단위로 찾아보기 
+// const ip_denying = (req)=>{
+//     let ip = req.ip; //->ip를 받아와서
+//     let geo = geoip.lookup(ip); //-> 내부 모듈 
+//     var return_data ={
+//         ip:ip,
+//         state:0,
+//         country: geo.country
+//     }
+//     if(geo != null && geo.country != 'KR' && ip != '127.0.0.1'){
+//         return_data.state = 1;//밴 먹은 ip state = 1
+//         return return_data;
+//     }
+//     else{
+//         return return_data;
+//     }
+// }
 
 /********************************
  * ********** 페이징  ***********
@@ -206,25 +206,25 @@ const file_a = (path,name,data)=>{
 //     }        
 // }
 
-/********************************
- * ******* file multer  *********
-*********************************/
-const multer = require("multer");
-const { join } = require('path');
-const _storage = multer.diskStorage({
-    destination: (req,file,cb)=>{
-        cb(null,join.path(__dirname,'../db/image'));//파일 저장 경로
-    },
-    filename: (req,file,cb)=>{
-        //cb(null,file.filename + '-' + Date.now());//파일 이름 형식 - 사용자가 준거-현재시간
-        cb(null,"image - " + Date.now());//파일 이름 형식 - 사용자가 준거-현재시간
-    }
-})
-const upload = multer({storage:_storage});
-/********************************
- * ******** os moniter  *********
-*********************************/
-const os = require('os');
+// /********************************
+//  * ******* file multer  *********
+// *********************************/
+// const multer = require("multer");
+// const { join } = require('path');
+// const _storage = multer.diskStorage({
+//     destination: (req,file,cb)=>{
+//         cb(null,join.path(__dirname,'../db/image'));//파일 저장 경로
+//     },
+//     filename: (req,file,cb)=>{
+//         //cb(null,file.filename + '-' + Date.now());//파일 이름 형식 - 사용자가 준거-현재시간
+//         cb(null,"image - " + Date.now());//파일 이름 형식 - 사용자가 준거-현재시간
+//     }
+// })
+// const upload = multer({storage:_storage});
+// /********************************
+//  * ******** os moniter  *********
+// *********************************/
+// const os = require('os');
 
 module.exports = {
     isEmpty,
