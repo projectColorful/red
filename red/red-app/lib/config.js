@@ -17,6 +17,12 @@ const config = {
     max: process.env.PG_POOL_MAX || '20',
     idleConnectTimeout: process.env.PG_POOL_TIMEOUT || '15000',
     idleTimeoutMillis: process.env.PG_POOL_IDLE_TIMEOUT || '150000',
+  },
+  auth:{
+    jwtSecretUser: process.env.JWT_SECRET_USER || `lsak2jdoa1i8cslmkfsd8mclkzmldkjl15l2ento8wdhvdonlt23mntoprecjg0p3reht230`,
+    jwtExpireUser: process.env.JWT_EXPIRE_USER  || `60d`,
+    jwtSecretAdmin: process.env.JWT_SECRET_ADMIN || `41sd86h4519trq78bfb23porfvwtfpaas6dcrasd80obrwbrw6d76d7xz98f9sxzdjgdixvzhglgf`,
+    jwtExpireAdmin: process.env.JWT_EXPIRE_ADMIN || `1d`
   }
 }
 

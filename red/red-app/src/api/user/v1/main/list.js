@@ -1,6 +1,6 @@
 // const app = express.Router();
-const jkh = require("../function/jkh_function")
-const { Q, pool } = require('../../../db/psqldb');
+const jkh = require('../../../../../lib/jkh_function');
+const { Q, pool } = require('../../../../../db/pg');
 
 
 const list = async (req, res) => {

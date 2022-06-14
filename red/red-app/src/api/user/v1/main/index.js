@@ -11,6 +11,6 @@ module.exports = (app) => {
 		router.get('/modify', require('./modify'));
 		router.put('/insert', require('./insert'));
 		router.get('/list', require('./list'));
-		router.get('/detail', require('./detail'));
+		router.get('/detail', require('./deteil'));
 	});
 };

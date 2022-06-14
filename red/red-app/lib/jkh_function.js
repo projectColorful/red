@@ -50,38 +50,38 @@ var date_local_time_set = (local) => {
 /********************************
  * ************암호화************
 *********************************/
-var crypto = require('crypto');
-//var shasum = crypto.createHash('sha256');
-var iv = Buffer.alloc(16,0);
-var key =crypto.scryptSync(jkh_key.app.ckey,'salt',32); //'$!@T!EFQT@#%!#TWGW@T!#@%^';// 비밀키
-var cipher = (password) => {
-    var cc = crypto.createCipher('aes192', key);
-    cc.update(password, 'utf-8', 'base64');
-    var cipstr = cc.final('base64');
-    return cipstr;
-}//암호화 함수 구버전
+// var crypto = require('crypto');
+// //var shasum = crypto.createHash('sha256');
+// var iv = Buffer.alloc(16,0);
+// var key =crypto.scryptSync(jkh_key.app.ckey,'salt',32); //'$!@T!EFQT@#%!#TWGW@T!#@%^';// 비밀키
+// // var cipher = (password) => {
+//     var cc = crypto.createCipher('aes192', key);
+//     cc.update(password, 'utf-8', 'base64');
+//     var cipstr = cc.final('base64');
+//     return cipstr;
+// }//암호화 함수 구버전
 
-var dcipher = (password) => {
-    var dc = crypto.createDecipheriv('aes192', key);
-    dc.update(password, 'base64', 'utf-8');
-    var dcipstr = dc.final('utf-8');
-    return dcipstr;
-}//복호화 함수
+// var dcipher = (password) => {
+//     var dc = crypto.createDecipheriv('aes192', key);
+//     dc.update(password, 'base64', 'utf-8');
+//     var dcipstr = dc.final('utf-8');
+//     return dcipstr;
+// }//복호화 함수
 ////////////////////////////////////////////
 
-var cipheriv = (password) => {
-    var cc = crypto.createCipheriv(jkh_key.app.carl,key,iv);//return -> cipher
-    cc.update(password, 'utf-8', 'base64');
-    var cipstr = cc.final('base64');
-    return cipstr;
-}//암호화 함수
+// var cipheriv = (password) => {
+//     var cc = crypto.createCipheriv(jkh_key.app.carl,key,iv);//return -> cipher
+//     cc.update(password, 'utf-8', 'base64');
+//     var cipstr = cc.final('base64');
+//     return cipstr;
+// }//암호화 함수
 
-var dcipheriv = (password) => {
-    var dc = crypto.createDecipheriv(jkh_key.app.carl, key,iv);
-    dc.update(password, 'base64', 'utf-8');
-    var dcipstr = dc.final('utf-8');
-    return dcipstr;
-}//복호화 함수
+// var dcipheriv = (password) => {
+//     var dc = crypto.createDecipheriv(jkh_key.app.carl, key,iv);
+//     dc.update(password, 'base64', 'utf-8');
+//     var dcipstr = dc.final('utf-8');
+//     return dcipstr;
+// }//복호화 함수
 
 /********************************
  * ***********로그 관리***********
@@ -231,14 +231,14 @@ module.exports = {
     isNan,
     date_time,
     date_ymd,
-    cipher,
-    dcipher,
-    cipheriv,
-    dcipheriv,
-    webhook,
+    // cipher,
+    // dcipher,
+    // cipheriv,
+    // dcipheriv,
+    // webhook,
     createToken,
     pageid,
-    ip_denying,
+    // ip_denying,
     file_r,
     file_w,
     file_a,
@@ -247,6 +247,6 @@ module.exports = {
     date_local_time_set,
     appRoot,
     logstream,
-    upload
+    // upload
 
 }//log save
