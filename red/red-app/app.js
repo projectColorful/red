@@ -18,11 +18,11 @@ app.use(express.urlencoded({ extends: true }));
 // app.use(cookieParser());
 app.use(passport.initialize());//passport 실행
 app.get('/',(req, res) => {
-    return res.send("{Hello world");
+    return res.send("Hello world");
 })
 app.use(morgan('combined', { stream: jkh_f.logstream }))//로그파일로 관리 함 1일단위
 
-app.use('/api/v1/user', require('./src/api/user/v1/index')); //사용자
+app.use('/api/v1/user', require('./src/api/user/v1/')); //사용자
 // app.use('/api/v1/admin', admin); //관리자
 app.listen(3000, () => {
     console.log('http://localhost:3000');
