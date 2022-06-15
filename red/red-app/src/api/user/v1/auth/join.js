@@ -20,6 +20,7 @@ const join = async (req, res,next) => {
             pw: params.user_pw,
             name: params.user_name
         }
+        console.log(...data)
         if (jkh.isEmpty(data.id,data.pw,data.name)) {
             response.state = 2;
             response.msg = 'params is empty !!';
@@ -40,8 +41,7 @@ const join = async (req, res,next) => {
 
         if (jkh.isEmpty(query1.rows)) {
             response.state = 3;
-            response.msg = 'login failed';
-            jkh.webhook('err', response.msg)//log 보내는 역활
+            response.msg = 'join failed';
             return res.state(404).send(json(response));
         }
         else {
@@ -57,7 +57,7 @@ const join = async (req, res,next) => {
         response.msg = err + ' ';
         //return res.status(500).json(response); //클라이언트에게 완료 메시지 보내줌
     }
-    return res.state(200).join(response).next();//데이터 전송 !!
+    return res.state(200).join(response);//데이터 전송 !!
 
 }// 회원가입
 

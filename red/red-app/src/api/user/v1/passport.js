@@ -39,7 +39,7 @@ passport.use('user.local', new LocalStrategy(
       const user = query[0];
 
       const check = await bcrypt.compare(user_pw, user.user_pw);
-      if (!check) {
+      if (!check) { 
         // 비밀번호 틀림
         return done(null, { error: true, state: -2, msg: 'Incorrect email or password' }, {});
       }

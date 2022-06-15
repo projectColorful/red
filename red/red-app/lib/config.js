@@ -4,8 +4,8 @@ const config = {
   app: {
     host: process.env.APP_HOST || '0.0.0.0',
     port: process.env.APP_PORT || '9595',
-    storagePath: process.env.STORAGE_PATH || './storage',
-    webUrl: process.env.WEB_URL || '',
+    // storagePath: process.env.STORAGE_PATH || './storage',
+    // webUrl: process.env.WEB_URL || '',
   },
   db: {
     host: process.env.PG_HOST || 'localhost',
