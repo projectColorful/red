@@ -1,4 +1,4 @@
-const { $, pool } = require(`../../../../db/pg`);
+const { Q, pool } = require(`../../../../db/pg`);
 const config = require(`../../../../lib/config`);
 
 const passport = require('passport');
@@ -21,14 +21,14 @@ passport.use('user.local', new LocalStrategy(
   async (user_id, user_pw, done) => {
     try {
       // user_id, user_pw로 사용자 인증 확인. 해당 값이 없으면 400 리턴
-      const sql = $`
+      const sql = Q`
       SELECT
         user_no,
         user_pw,
         state
       FROM users
       WHERE
-        user_id = ${user_id}
+        user_id = ${user_id} 
       `;
 
       const query = (await pool.query(sql)).rows;

@@ -19,9 +19,10 @@ app.get('/',(req, res) => {
 })
 app.use(morgan('combined', { stream: jkh_f.logstream }))//로그파일로 관리 함 1일단위
 
-app.use('/api/v1/user', require('./src/api/user/v1/')); //사용자
-// app.use('/api/v1/admin', admin); //admin page
+app.use('/api/user/v1', require('./src/api/user/v1/')); //사용자
+// app.use('/api/v1/admin', admin); //admin 
 app.listen(3000, () => {
     console.log('http://localhost:3000');
+    console.info()
 });
 

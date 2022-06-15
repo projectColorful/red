@@ -9,10 +9,10 @@ const config = {
   },
   db: {
     host: process.env.PG_HOST || 'localhost',
-    port: process.env.PG_PORT || '5432',
+    port: process.env.PG_PORT || '5433',
     user: process.env.PG_USER || '',
-    password: process.env.PG_PASSWORD || '',
-    database: process.env.PG_DATABASE || '',
+    password: process.env.PG_PASSWORD || 'rlgns123',
+    database: process.env.PG_DATABASE || 'red',
     connectionTimeoutMillis: process.env.PG_TIMEOUT || '15000',
     max: process.env.PG_POOL_MAX || '20',
     idleConnectTimeout: process.env.PG_POOL_TIMEOUT || '15000',

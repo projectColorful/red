@@ -6,10 +6,11 @@ const passport = require(`../passport`);
  * @description /pwChage -> 비밀번호 변경
  */
 module.exports = (app) => {
-    app.post('/login', require('./login'));
+    app.post('/login', [passport.authenticate('user.local', { session: false })], require('./login'));
+    app.get('/join ', require('./join') );
+    app.post('/pwchage', require('./pwChage'));
+
     app.group([passport.authenticate('user.jwt', { session: false })], (router) => {
-        router.post('/join ', require('./join'));
-        router.post('/pwChage', require('./pwChage'));
         router.get('/getname', require('./getName'));
     });
 };

@@ -3,7 +3,7 @@ const jkh = require("../../../../../lib/jkh_function")
 const { Q, pool } = require('../../../../../db/pg');
 
 
-const join = async (req, res) => {
+const join = async (req, res,next) => {
     const response = {
         state: 1, // 상태표시 0: 실패, 1: 성공, 2변수없음, 3조회결과없음
         query: null, // 응답 값(JSON 형식) null, Object, Array, Boolean 중 하나
@@ -12,14 +12,13 @@ const join = async (req, res) => {
     const params = {
         ...req.query,
         ...req.params,
-        ...req.body,
-        ...req.user,
+        ...req.body        
     }
     try {
         let data = {
-            id: params.id,
-            pw: params.pw,
-            name: params.name
+            id: params.user_id,
+            pw: params.user_pw,
+            name: params.user_name
         }
         if (jkh.isEmpty(data.id,data.pw,data.name)) {
             response.state = 2;
@@ -58,8 +57,9 @@ const join = async (req, res) => {
         response.msg = err + ' ';
         //return res.status(500).json(response); //클라이언트에게 완료 메시지 보내줌
     }
-    return res.state(200).join(response);//데이터 전송 !!
+    return res.state(200).join(response).next();//데이터 전송 !!
 
 }// 회원가입
 
 module.exports = join;
+  
