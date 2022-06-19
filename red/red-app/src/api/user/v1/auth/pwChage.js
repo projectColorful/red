@@ -18,7 +18,6 @@ async function pwChage(req, res) {
         ...req.query,
         ...req.params,
         ...req.body,
-        // ...req.user
     };
     try {
         if (jkh.isEmpty()) {
@@ -26,7 +25,7 @@ async function pwChage(req, res) {
             response.msg = 'params is empty !!';
             return res.status(500).json(response);
         }
-        const sql1 = Q`UPDATE users SET user_pw = ${bcrypt.hash(params.user_pw, saltRounds)} WHERE user_id = ${data.id} RETURNING *`; //등록
+        const sql1 = Q`UPDATE users SET user_pw = ${bcrypt.hash(params.user_pw, saltRounds)} WHERE user_id = ${params.user_id} RETURNING *`; //등록
         const query1 = await pool.query(sql1); //값 저장
 
         if (jkh.isEmpty(query1.rows)) {
