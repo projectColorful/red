@@ -27,7 +27,7 @@ const test = async (req, res) => {
 module.exports = (app) => {
     app.group('/',(router) => {
         router.post('/login', [passport.authenticate('user.local', { session: false })], require('./login'));
-        router.get('/join ', require('./join'));
+        router.post('/join ', require('./join'));
         router.post('/pwchage', require('./pwChage'));
         router.get('/test', test);
         router.get('/getname', [passport.authenticate('user.jwt', { session: false })], require('./getName'));
