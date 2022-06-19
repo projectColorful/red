@@ -4,12 +4,24 @@ const jkh_key = require('./config');
  *********************************/
 var isEmpty = (...str) => { //null을 대신해 비어있음을 확인
     for (let i_str of str) {
-        if (value == 'null'
-        || value == ''
-        || value == null
-        || value == undefined
-        || value === 'undefined'
-        || (value != null && typeof value === 'object' && !Object.keys(value).length))
+        if (i_str == 'null'
+        || i_str == ''
+        || i_str == null
+        || i_str == undefined
+        || i_str === 'undefined'
+        || (i_str != null && typeof i_str === 'object' && !Object.keys(i_str).length))
+            return true;
+        else
+            return false;
+    }
+}
+var isEmpty2 = (...str) => { //null을 대신해 비어있음을 확인
+    for (let i_str of str) {
+        if (i_str == 'null'
+        || i_str == ''
+        || i_str == null
+        || i_str == undefined
+        || i_str === 'undefined')
             return true;
         else
             return false;
@@ -228,6 +240,7 @@ const file_a = (path,name,data)=>{
 
 module.exports = {
     isEmpty,
+    isEmpty2,
     isNan,
     date_time,
     date_ymd,

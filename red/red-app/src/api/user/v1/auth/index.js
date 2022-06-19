@@ -26,10 +26,10 @@ const test = async (req, res) => {
 // })
 module.exports = (app) => {
     app.group('/',(router) => {
-        router.post('/login', [passport.authenticate('user.local', { session: false })], require('./login'));
-        router.post('/join ', require('./join'));
+        router.post('/register', require('./join'));
         router.post('/pwchage', require('./pwChage'));
-        router.get('/test', test);
+        router.post('/test', test);
+        router.post('/login', [passport.authenticate('user.local', { session: false })], require('./login'));
         router.get('/getname', [passport.authenticate('user.jwt', { session: false })], require('./getName'));
     });
 }
