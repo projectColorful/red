@@ -27,19 +27,20 @@ const join = async (req, res) => {
             return res.status(404).json(response);
         }
         const sql0 = Q`
-        SELECT user_id FROM users WHERE user_id = ${data.id};`;
+        SELECT user_no FROM users WHERE user_id = ${data.id};`;
         const query0 = await pool.query(sql0);
-        if (jkh.isEmpty(query0.rows)) {
+        console.log(`중복관련 값인지 : ${query0.rows[0]}`)
+        if (!jkh.isEmpty(query0.rows)) { //값이 있다는건  거짓을 출력할껀데 값이 있으면 중복이라서 !로 걸러줌
             response.state = 0;
             response.msg = 'Duplicate values';
             return res.status(500).json(response);
         }//리턴하면 else가 필용없다.
 
         const sql1 =
-            Q`INSERT INTO users(user_id,user_pw,user_name) values (${data.id},${await bcrypt.hash(data.pw,saltRounds)},${data.name});`;//등록
+            Q`INSERT INTO users(user_id,user_pw,user_name) values (${data.id},${await bcrypt.hash(data.pw,saltRounds)},${data.name}) RETURNING *;`;//등록
         const query1 = await pool.query(sql1);//값 저장
 
-        if (jkh.isEmpty2(query1.rows)) {
+        if (jkh.isEmpty(query1.rows)) {
             response.state = 3;
             response.msg = 'join failed';
             return res.status(500).json(response);
