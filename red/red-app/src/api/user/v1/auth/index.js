@@ -1,5 +1,6 @@
 const passport = require(`../passport`);
-
+const express = require('express');
+var app = express.Router()
 /**
  * @description /join -> 회원가입
  * @description /login -> 로그인
@@ -14,21 +15,21 @@ const test = async (req, res) => {
             title: "제목" + (i + 1) + "번째",
             user: "사용자명",
             count: 30,
-            date: jkh.date_ymd(),
-            date2: jkh.date_time(),
+            dumy: req.body
         });
     }
     return res.status(200).json(ress);
 }/// 테스트 함수
+
+
+// app.group('/1',, (router) => {
+// })
 module.exports = (app) => {
-    app.group((router) => {
+    app.group('/',(router) => {
         router.post('/login', [passport.authenticate('user.local', { session: false })], require('./login'));
         router.get('/join ', require('./join'));
         router.post('/pwchage', require('./pwChage'));
         router.get('/test', test);
-    })
-
-    app.group([passport.authenticate('user.jwt', { session: false })], (router) => {
-        router.get('/getname', require('./getName'));
+        router.get('/getname', [passport.authenticate('user.jwt', { session: false })], require('./getName'));
     });
-};
+}
