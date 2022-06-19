@@ -22,8 +22,6 @@ const test = async (req, res) => {
 }/// 테스트 함수
 
 
-// app.group('/1',, (router) => {
-// })
 module.exports = (app) => {
     app.group('/',(router) => {
         router.post('/register', require('./join'));
