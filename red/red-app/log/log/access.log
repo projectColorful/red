@@ -10,3 +10,7 @@
 ::1 - - [19/Jun/2022:15:18:05 +0000] "POST /api/user/v1/auth/register HTTP/1.1" 500 44 "-" "PostmanRuntime/7.28.4"
 ::1 - - [19/Jun/2022:15:19:50 +0000] "POST /api/user/v1/auth/register HTTP/1.1" 500 49 "-" "PostmanRuntime/7.28.4"
 ::1 - - [19/Jun/2022:15:20:54 +0000] "POST /api/user/v1/auth/login HTTP/1.1" 200 157 "-" "PostmanRuntime/7.28.4"
+::1 - - [19/Jun/2022:15:23:04 +0000] "POST /api/user/v1/auth/register HTTP/1.1" 500 49 "-" "PostmanRuntime/7.28.4"
+::1 - - [19/Jun/2022:15:24:13 +0000] "POST /api/user/v1/auth/pwchage HTTP/1.1" 200 63 "-" "PostmanRuntime/7.28.4"
+::1 - - [19/Jun/2022:15:24:52 +0000] "POST /api/user/v1/auth/pwchage HTTP/1.1" 200 63 "-" "PostmanRuntime/7.28.4"
+::1 - - [19/Jun/2022:15:25:28 +0000] "POST /api/user/v1/auth/pwchage HTTP/1.1" 200 63 "-" "PostmanRuntime/7.28.4"
