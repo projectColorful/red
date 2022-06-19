@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "nodemon app",
-    "start": "pm2 start apiServer.config.js"    
+    "start": "pm2 start .\\apiServer.config.js"    
   },
   "keywords": [],
   "author": "",
