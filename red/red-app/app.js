@@ -30,4 +30,4 @@ app.listen(3000, () => {
     console.log('http://localhost:3000');
     console.info()
 });
-
+//ip관련 처리 해줄것
