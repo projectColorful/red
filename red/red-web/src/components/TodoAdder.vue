@@ -23,7 +23,8 @@ export default {
       this.$store.commit("saveLocalstorage");
     },
     async sendPostTodo(){
-      const data = await this.$axios.post('http://localhost:3000/api/user/v1/main/list',{
+      const hostIp = 'localhost:3000';//@note 서버가 아직 미정인 상태라서 해당방식으로 설계 
+      const data = await this.$axios.post(`http://${hostIp}/api/user/v1/main/list`,{
         params: {
           "content":  this.$store.state.todoTaskName,
           "deadline": null,
