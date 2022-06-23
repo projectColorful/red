@@ -21,10 +21,11 @@ const list = async (req, res) => {
             pw: params.pw,
             name: params.name
         }
+        console.log(params.user_no);
         if (jkh.isEmpty()) {
             response.state = 2;
             response.msg = 'params is empty !!';
-            return res.state(404).json(response);
+            return res.status(404).json(response);
         }
         const sql0 = Q`
         select 
@@ -40,12 +41,13 @@ const list = async (req, res) => {
         if (jkh.isEmpty(query0.rows)) {
             response.state = 3;
             response.msg = 'sql failed';
-            return res.state(422).send(json(response));
+            return res.status(422).send(json(response));
         }
         else {
             response.state = 1;
+            response.query = query0.rows;
             response.msg = 'Member registration successful';
-            return res.state(200).join(response);//데이터 전송 !!
+            return res.status(200).json(response);//데이터 전송 !!
         }
 
     }
@@ -54,7 +56,7 @@ const list = async (req, res) => {
         response.state = 0;
         response.msg = err + ' ';     
     }
-    return res.state(200).join(response);//데이터 전송 !!
+    return res.status(200).json(response);//데이터 전송 !!
 
 }// 회원가입
 

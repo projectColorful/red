@@ -22,10 +22,22 @@ export default {
       this.$store.commit("addTodo");
       this.$store.commit("saveLocalstorage");
     },
+    async sendPostTodo(){
+      const data = await this.$axios.post('http://localhost:3000/api/user/v1/main/list',{
+        params: {
+          "content":  this.$store.state.todoTaskName,
+          "deadline": null,
+          "note_checked": "1"
+        }
+      }).then((res) => res.data.query )
+      if(data.response.state !== 1)
+        console.log('save fail!!')
+    }
   },
   components:{
 
-  }
+  },
+
 };
 </script>
 

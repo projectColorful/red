@@ -19,7 +19,7 @@ const insert = async (req, res) => {
         if (jkh.isEmpty(params.deadline,params.content,params.nc)) {
             response.state = 2;
             response.msg = 'params is empty !!';
-            return res.state(422).json(response);
+            return res.status(422).json(response);
         }
         const sql0 = Q`
         SELECT
@@ -40,18 +40,19 @@ const insert = async (req, res) => {
             }]
         }
         const sql1 =
-            Q`INSERT INTO note(user_id,note_data) values (${params.user_no},${note_data});`;//등록
+            Q`INSERT INTO note(user_no,note_data) values (${params.user_no},${note_data}) RETURNING *;`;//등록
         const query1 = await pool.query(sql1);//값 저장
 
         if (jkh.isEmpty(query1.rows)) {
             response.state = 3;
             response.msg = 'sql failed';
-            return res.state(422).send(json(response));
+            return res.status(422).send(json(response));
         }
         else {
             response.state = 1;
-            response.msg = 'Member registration successful';
-            return res.state(200).join(response);//데이터 전송 !!
+            response.msg = 'note add registration successful';
+            response.query = query1.rows[0];
+            return res.status(200).json(response);//데이터 전송 !!
         }
 
     }
@@ -60,7 +61,7 @@ const insert = async (req, res) => {
         response.state = 0;
         response.msg = err + ' ';
     }
-    return res.state(200).join(response);//데이터 전송 !!
+    return res.status(200).json(response);//데이터 전송 !!
 
 }// 회원가입
 
