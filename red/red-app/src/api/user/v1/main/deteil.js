@@ -46,6 +46,7 @@ const deteil = async (req, res) => {
         }
         else {
             response.state = 1;
+            response.query = query0.rows[0];
             response.msg = 'Member registration successful';
             return res.state(200).join(response);//데이터 전송 !!
         }
