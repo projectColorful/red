@@ -1,24 +1,7 @@
-# vuex-todo
+## Version Log
 
-## Project setup
-```
-npm install
-```
+0.1 native code completed.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+0.2 momentjs, lodash added.
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+0.2.1 code refactoring.
