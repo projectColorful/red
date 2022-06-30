@@ -5,7 +5,7 @@ import { todolist } from "@/store/module/todolist";
 export const store = createStore({
   modules: {
     time: time,
-    todolist: todolist,
+    todolist: todolist
 
   },
   state: {},
