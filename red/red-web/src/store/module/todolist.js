@@ -1,5 +1,6 @@
 import _ from "lodash";
-import moment from "moment";
+import dayjs from "dayjs";
+
 export const todolist = {
   namespaced: true,
   state: {
@@ -16,12 +17,12 @@ export const todolist = {
     /**
      * Add TodoItems
      * @param state
-     * @param payload  momentjs_object, expired date
+     * @param payload  dayjs_object, expired date
      * @constructor
      */
     SET_TODOITEM_EXPIREDDATE(state, payload) {
       state.todoTaskTime = payload.taskTime;
-      state.todoExpiredDate = moment(payload.fullDate).add(
+      state.todoExpiredDate = dayjs(payload.fullDate).add(
         payload.taskTime,
         "m"
       );

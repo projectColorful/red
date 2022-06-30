@@ -29,7 +29,7 @@
 <script>
 import { CheckIcon, XIcon } from "@heroicons/vue/solid";
 import { mapActions } from "vuex";
-import moment from "moment";
+import dayjs from 'dayjs'
 
 export default {
   name: "TodoListItem",
@@ -54,10 +54,8 @@ export default {
     // TODO : payload - > time.js -> getter
     calculateRemainingTime() {
       setInterval(() => {
-        this.remainingTime = (moment()/moment(this.todoitem.todoExpiredDate))*100
+        this.remainingTime = (dayjs()/dayjs(this.todoitem.todoExpiredDate))*100
       }, 500)
-      console.log(moment())
-      console.log(this.todoitem.todoExpiredDate)
     },
   },
   created() {
