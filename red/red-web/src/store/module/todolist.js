@@ -104,7 +104,7 @@ export const todolist = {
       const loadData = JSON.parse(localStorage.getItem("todoList"));
       const todoMaxId = _.maxBy(loadData, (findMaxId) => {
         return findMaxId.todoId;
-      }).todoId;
+      });
       state.todoId = todoMaxId;
       state.todoList = loadData;
     },
