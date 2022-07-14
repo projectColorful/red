@@ -31,6 +31,7 @@
 import { CheckIcon, XIcon } from "@heroicons/vue/solid";
 import { mapActions } from "vuex";
 import dayjs from 'dayjs'
+import axios from "axios";
 
 export default {
   name: "TodoListItem",
@@ -58,7 +59,8 @@ export default {
         this.remainingTime = (dayjs()/dayjs(this.todoitem.todoExpiredDate))*100
       }, 500)
     },
-    changeTodoItemColor(){
+    async changeTodoItemColor(){
+      const data = await axios.get('http://localhost:3000/api/v1/')
       //마감시간을 가져옴
       let temprgd = new Date();//생성시간 -> 디비에서 들고와야됨
       let tempEnd = new Date(0,0,0,0,30,0)//마감시간 30분 -> 디비에서 들고와야됨

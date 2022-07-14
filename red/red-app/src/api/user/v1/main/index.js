@@ -8,10 +8,10 @@ var app = express.Router()
  * @description /detail ->  세부정보 출력
  */
 module.exports = (app) => {
+	app.get('/list', require('./list'));
 	app.group('/',[passport.authenticate('user.jwt', { session: false })], (router) => {
 		router.get('/modify', require('./modify'));
 		router.put('/insert', require('./insert'));
-		router.get('/list', require('./list'));
 		router.get('/detail', require('./deteil'));
 	});
 };
